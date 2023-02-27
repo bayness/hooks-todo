@@ -1,16 +1,22 @@
 import React from "react";
 import { Todo } from "./Todo";
 
+
+
 export const ToDoList = ({ toDoList, handleToggle, handleDelete }) => {
   return (
     <div>
       {toDoList.map((todo) => {
         return (
+      
           <Todo
             todo={todo}
             handleToggle={handleToggle}
             handleDelete={handleDelete}
           />
+
+
+
         );
       })}
 

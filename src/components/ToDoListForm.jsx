@@ -1,23 +1,24 @@
 import React from "react";
 import { useState } from "react";
 
-export const ToDoListForm = ({ toDoList }) => {
-  const [userInput, setUserInput] = useState("");
 
+export const ToDoListForm = ({ toDoList }) => {
+
+const [todo, setTodo] = useState("");
   const handleChange = (e) => {
-    setUserInput(e.target.value);
+    setTodo(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUserInput(
-      [...toDoList].concat({
+    setTodo(
+      [...toDoList].push({
         id: toDoList.length + 1,
-        task: userInput,
+        task: todo,
         complete: false,
       })
     );
-    setUserInput("");
+    setTodo("");
   };
 
   return (
@@ -26,7 +27,7 @@ export const ToDoListForm = ({ toDoList }) => {
       <input
         style={{ maring: "50" }}
         type="text"
-        value={userInput}
+        value={todo}
         placeholder="Enter task..."
         onChange={handleChange}
       />
