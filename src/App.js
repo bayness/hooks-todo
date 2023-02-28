@@ -24,7 +24,9 @@ function App() {
       // every task with id number multiple of three would be completed.
       complete:  (toDoList.length + 1) % 3 === 0 
     };
-  
+    
+  // user will get an alert if he write nothing and submit
+  (userInput === "" ) ? alert(" Write a task") :
     setToDolist([
       ...toDoList, lastTodo
     ]);
@@ -38,7 +40,7 @@ function App() {
 
       <ToDoList
         toDoList={toDoList}
-        handleDelete={handleDelete}
+        kharya={handleDelete}
        />
       
       
