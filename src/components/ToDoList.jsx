@@ -4,7 +4,7 @@ import { Todo } from "./Todo";
 
 
 
-export const ToDoList = ({ toDoList, handleDelete }) => {
+export const ToDoList = ({ toDoList, kharya }) => {
 
 
 
@@ -13,11 +13,11 @@ export const ToDoList = ({ toDoList, handleDelete }) => {
       {toDoList.map((todo) => {
         return (
       <div>
-          <Todo
+         <Todo
             todo={todo}
           />
 
-          <button onClick={() => handleDelete(todo.id)} style={{ Color: "red" , margin : "20px"}}>
+          <button onClick={() => kharya(todo.id)} style={{ Color: "red" , margin : "20px"}}>
           CUT
         </button>
         </div>
