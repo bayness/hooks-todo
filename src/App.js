@@ -1,55 +1,47 @@
 import { useState } from "react";
-import data from "./components/data.json";
 import { Header } from "./components/Header";
 import "./App.css";
 import { ToDoList } from "./components/ToDoList";
 import { ToDoListForm } from "./components/ToDoListForm";
 
 function App() {
-  const [toDoList, setToDolist] = useState(data);
-  // const [userInput, setUserInput] = useState("");
+  const [toDoList, setToDolist] = useState([]);
 
-  const handleToggle = (id) => {
-    let mapped = toDoList.map((task) => {
-      return task.id === id
-        ? { ...task, complete: !task.complete }
-        : { ...task };
-    });
-    setToDolist(mapped);
-  };
 
-  const handleDelete = () => {
-    let deleted = toDoList.filter((task) => {
-      return !task.complete;
-    });
+
+  const handleDelete = (id) => {
+    let deleted = toDoList.filter((task) => task.id !== id
+  
+    );
 
     setToDolist(deleted);
   };
 
-  // these functions concerns the form component only
-
-  // const Delete = (id) => {
-  //   let newArray = toDoList.filter((todo) => todo.id != id);
-  //   setToDolist(newArray);
-  // };
-
+  const handleSubmit = (userInput) => {
+    const lastTodo = {
+      id: toDoList.length + 1,
+      task: userInput,
+      // every task with id number multiple of three would be completed.
+      complete:  (toDoList.length + 1) % 3 === 0 
+    };
   
-
+    setToDolist([
+      ...toDoList, lastTodo
+    ]);
+  };
   
 
   return (
     <div className="App">
       <Header />
+<ToDoListForm toDoList={toDoList} setToDolist={setToDolist} handleSubmit={handleSubmit} />
+
       <ToDoList
         toDoList={toDoList}
-        handleToggle={handleToggle}
         handleDelete={handleDelete}
-      >
+       />
       
       
-
-      </ToDoList>
-      <ToDoListForm />
 
     </div>
   );

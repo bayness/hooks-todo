@@ -1,36 +1,31 @@
 import React from "react";
 import { useState } from "react";
 
+export const ToDoListForm = ({handleSubmit}) => {
+  const [userInput, setUserInput] = useState("");
 
-export const ToDoListForm = ({ toDoList }) => {
-
-const [todo, setTodo] = useState("");
   const handleChange = (e) => {
-    setTodo(e.target.value);
+    setUserInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
-    setTodo(
-      [...toDoList].push({
-        id: toDoList.length + 1,
-        task: todo,
-        complete: false,
-      })
-    );
-    setTodo("");
+   
+    handleSubmit(userInput);
+    setUserInput("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmitForm}>
       <label htmlFor="Enter task"></label>
       <input
-        style={{ maring: "50" }}
+        style={{ margin: "50px" }}
         type="text"
-        value={todo}
+        value={userInput}
         placeholder="Enter task..."
         onChange={handleChange}
       />
+      <button type="submit" >Submit</button>
     </form>
   );
 };

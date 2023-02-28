@@ -3,26 +3,28 @@ import { Todo } from "./Todo";
 
 
 
-export const ToDoList = ({ toDoList, handleToggle, handleDelete }) => {
+
+export const ToDoList = ({ toDoList, handleDelete }) => {
+
+
+
   return (
     <div>
       {toDoList.map((todo) => {
         return (
-      
+      <div>
           <Todo
             todo={todo}
-            handleToggle={handleToggle}
-            handleDelete={handleDelete}
           />
 
-
-
+          <button onClick={() => handleDelete(todo.id)} style={{ Color: "red" , margin : "20px"}}>
+          CUT
+        </button>
+        </div>
         );
       })}
 
-      <button onClick={handleDelete} style={{ margin: "20" }}>
-        Delete Compeleted
-      </button>
+  
     </div>
   );
 };
